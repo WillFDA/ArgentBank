@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 export default function Navbar() {
   return (
     <nav className="main-nav">
@@ -13,7 +16,7 @@ export default function Navbar() {
       </Link>
       <div>
         <Link className="main-nav-item" to="/signin">
-          <i className="fa fa-user-circle"></i>
+          <FontAwesomeIcon icon={faUserCircle} />
           Sign In
         </Link>
       </div>

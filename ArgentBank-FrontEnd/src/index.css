@@ -13,6 +13,13 @@ body {
   min-height: 100vh;
 }
 
+#root {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 .main {
   flex: 1;
 }
@@ -56,6 +63,10 @@ body {
   margin-right: 0.5rem;
 }
 
+.main-nav-item svg {
+  margin-right: 5px;
+}
+
 .main-nav-item:hover {
   text-decoration: underline;
 }
@@ -71,7 +82,7 @@ body {
 }
 
 .hero {
-  background-image: url('../img/bank-tree.jpeg');
+  background-image: url('../public/bank-tree.jpeg');
   background-position: 0 -50px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -160,6 +171,8 @@ body {
   font-size: 1.1rem;
   font-weight: bold;
   margin-top: 1rem;
+  border: none;          /* Ajouté */
+  outline: none;         /* Ajouté */
   border-color: #00bc77;
   background-color: #00bc77;
   color: #fff;

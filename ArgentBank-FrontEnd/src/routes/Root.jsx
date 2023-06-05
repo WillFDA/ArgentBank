@@ -6,9 +6,9 @@ export const Root = () => {
   return (
     <>
       <Navbar />
-      <main>
+      <>
         <Outlet />
-      </main>
+      </>
       <Footer />
     </>
   );
