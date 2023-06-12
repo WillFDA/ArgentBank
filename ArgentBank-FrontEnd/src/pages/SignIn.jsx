@@ -1,34 +1,54 @@
 import React from "react";
-
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginSuccess } from "../redux/features/loginSlice";
-import { resetForm } from "../redux/features/formSlice";
+import {
+  setUsername,
+  setPassword,
+  resetForm,
+} from "../redux/features/formSlice";
 
 export const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const userName = useSelector((state) => state.formFeature.username);
+  const password = useSelector((state) => state.formFeature.password);
+  const handleUsernameChange = (event) => {
+    dispatch(setUsername(event.target.value));
+    // console.log(userName);
+  };
+
+  const handlePasswordChange = (event) => {
+    dispatch(setPassword(event.target.value));
+    // console.log(password);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const userName = useSelector((state) => state.formFeature.userName);
-    const password = useSelector((state) => state.formFeature.password);
+
     const request = {
       method: "POST",
-      headers: { ContentType: "application/json" },
-      body: JSON.stringify({ userName, password }),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: userName, password }),
     };
 
-    const response = await fetch(
-      "http://localhost:3001/api/v1/user/login",
-      request
-    );
-    const data = await response.json();
+    try {
+      const response = await fetch(
+        "http://localhost:3001/api/v1/user/login",
+        request
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
 
-    if (response.ok) {
-      dispatch(loginSuccess(data));
+      const data = await response.json();
+      // console.log(data.body.token);
+      dispatch(loginSuccess(data.body.token));
       dispatch(resetForm());
       navigate("/user");
-    } else console.error(error);
+    } catch (error) {
+      console.error("There was an error!", error);
+    }
   };
 
   return (
@@ -40,11 +60,15 @@ export const SignIn = () => {
         <form onSubmit={handleSubmit}>
           <div className="input-wrapper">
             <label htmlFor="username">Username</label>
-            <input type="text" id="username" />
+            <input onChange={handleUsernameChange} type="text" id="username" />
           </div>
           <div className="input-wrapper">
             <label htmlFor="password">Password</label>
-            <input type="password" id="password" />
+            <input
+              onChange={handlePasswordChange}
+              type="password"
+              id="password"
+            />
           </div>
           <div className="input-remember">
             <input type="checkbox" id="remember-me" />

@@ -14,6 +14,7 @@ import SignIn from "./pages/SignIn";
 import User from "./pages/User";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import Transactions from "./pages/Transactions";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,6 +22,7 @@ const router = createBrowserRouter(
       <Route index element={<HomePage />} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/user" element={<User />} />
+      <Route path="/transactions" element={<Transactions />} />
     </Route>
   )
 );

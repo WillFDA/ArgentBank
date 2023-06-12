@@ -164,6 +164,11 @@ body {
   margin-bottom: 0.5rem;
 }
 
+.edit-buttons-container {
+  display: flex;
+  gap: 1rem;
+}
+
 .sign-in-button {
   display: block;
   width: 100%;
@@ -204,6 +209,21 @@ body {
   flex-direction: column;
   text-align: left;
   margin-bottom: 1rem;
+}
+
+.input-wrapper-edit {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.input-label-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: center;
 }
 
 .input-wrapper label {
@@ -287,6 +307,10 @@ body {
   border-color: #00bc77;
   background-color: #00bc77;
   color: #fff;
+  box-sizing: border-box;
+  text-align: center;
+  text-decoration: none;
+  
 }
 
 @media (min-width: 720px) {
