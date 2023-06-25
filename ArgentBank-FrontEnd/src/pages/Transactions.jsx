@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AccountItems from "../components/AccountItem";
 import TransactionsItems from "../components/TransactionsItems";
+import { useNavigate } from "react-router-dom";
 const Transactions = () => {
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/error");
+    }
+  }, [token, navigate]);
   return (
     <main className="main bg-dark">
       <AccountItems

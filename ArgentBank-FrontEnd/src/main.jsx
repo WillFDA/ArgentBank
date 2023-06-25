@@ -8,7 +8,7 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
-// import ErrorPage from "./ErrorPage";
+import { ErrorPage } from "./ErrorPage";
 import HomePage from "./pages/HomePage";
 import SignIn from "./pages/SignIn";
 import User from "./pages/User";
@@ -23,6 +23,7 @@ const router = createBrowserRouter(
       <Route path="/signin" element={<SignIn />} />
       <Route path="/user" element={<User />} />
       <Route path="/transactions" element={<Transactions />} />
+      <Route path="/error" element={<ErrorPage />} />
     </Route>
   )
 );

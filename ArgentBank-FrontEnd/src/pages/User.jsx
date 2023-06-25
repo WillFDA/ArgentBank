@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   setUserProfile,
   toggleOpen,
@@ -9,6 +10,14 @@ import {
 import AccountItems from "../components/AccountItem";
 
 export const User = () => {
+  const navigate = useNavigate();
+  const tokenLocale = localStorage.getItem("token");
+  useEffect(() => {
+    if (!tokenLocale) {
+      navigate("/error");
+    }
+  }, [tokenLocale, navigate]);
+
   const dispatch = useDispatch();
   const token = useSelector((state) => state.login.token);
   const firstName = useSelector((state) => state.userInfo.firstName);

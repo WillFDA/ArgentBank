@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   faUserCircle,
   faRightFromBracket,
@@ -9,12 +9,11 @@ import { useDispatch } from "react-redux";
 import { logout } from "../redux/features/loginSlice";
 
 export default function Navbar() {
-  const location = useLocation();
-  const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const tokenLocale = localStorage.getItem("token");
   const handleSignOut = () => {
     dispatch(logout());
+    localStorage.removeItem("token");
   };
 
   return (
@@ -28,7 +27,7 @@ export default function Navbar() {
         <h1 className="sr-only">Argent Bank</h1>
       </Link>
       <div>
-        {location.pathname === "/user" ? (
+        {tokenLocale ? (
           <Link className="main-nav-item" onClick={handleSignOut}>
             <FontAwesomeIcon icon={faRightFromBracket} />
             Sign Out
