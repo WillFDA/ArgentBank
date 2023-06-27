@@ -5,12 +5,13 @@ import {
   faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/features/loginSlice";
 
 export default function Navbar() {
   const dispatch = useDispatch();
-  const tokenLocale = localStorage.getItem("token");
+  // Obtenez le token à partir de l'état de Redux au lieu du localStorage
+  const tokenLocale = useSelector((state) => state.login.token);
   const handleSignOut = () => {
     dispatch(logout());
     localStorage.removeItem("token");
